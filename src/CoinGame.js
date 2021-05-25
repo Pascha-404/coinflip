@@ -12,13 +12,13 @@ class CoinGame extends Component{
     flipCoin(e){
         const faces = ["heads", "tail-dime"];
         const randomFace = faces[Math.floor(Math.random() * faces.length)];
-        this.setState(curState => ({countFlips: curState.countFlips + 1}))
-        if(randomFace === "heads"){
-        this.setState(curState => ({countHeads: curState.countHeads + 1}))
-        } else {
-            this.setState(curState => ({countTails: curState.countTails + 1}))
-        };
-        this.setState(curState => ({coinFace: randomFace}))
+        this.setState(curState => {
+            return {
+            countFlips: curState.countFlips + 1,
+            coinFace: randomFace,
+            countHeads: curState.countHeads + (randomFace === "heads" ? 1 : 0),
+            countTails: curState.countTails + (randomFace === "tail-dime" ? 1 : 0)
+        }})
     }
 
     handleClick(e){
